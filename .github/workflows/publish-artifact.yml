@@ -6,7 +6,7 @@ on:
   pull_request:
 env:
   CI: true
-  DOCKER_BASE_NAME: ghcr.io/${{ github.repository }}
+  DOCKER_BASE_NAME: docker.pkg.github.com/${{ github.repository }}/secretlint
   DOCKER_HUB_BASE_NAME: korosuke613/secretlint
 
 permissions:
@@ -68,7 +68,7 @@ jobs:
         uses: docker/setup-buildx-action@v1
       - name: Login to Registries
         run: |
-          echo "${GITHUB_TOKEN}" | docker login ghcr.io -u korosuke613 --password-stdin
+          echo "${GITHUB_TOKEN}" | docker login docker.pkg.github.com -u korosuke613 --password-stdin
           echo "${DOCKER_HUB_TOKEN}" | docker login -u korosuke613 --password-stdin
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
