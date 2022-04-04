@@ -3,7 +3,7 @@ name: Publish-Artifact
 on:
   repository_dispatch:
     types: [publish-artifact]
-  pull_request: 
+  pull_request:
 env:
   CI: true
   DOCKER_BASE_NAME: ghcr.io/${{ github.repository }}
@@ -76,6 +76,7 @@ jobs:
             --build-arg SECRETLINT_VERSION=${SECRETLINT_VERSION} \
             --load \
             -t "${PKG_TAG}"
+        working-directory: ./publish/docker
       - name: Print version
         run: |
           docker run --rm ${PKG_TAG} --version
