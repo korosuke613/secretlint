@@ -80,8 +80,9 @@ jobs:
             --platform linux/amd64,linux/arm64 \
             --push \
             -t "${PKG_TAG}" \
-            -t "${HUB_LATEST_TAG}" \
-            -t "${HUB_TAG}"
+            -t "${PKG_LATEST_TAG}" \
+            -t "${HUB_TAG}" \
+            -t "${HUB_LATEST_TAG}"
         working-directory: ./publish/docker
       - name: Print version
         run: |
