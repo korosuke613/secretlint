@@ -68,7 +68,7 @@ jobs:
         uses: docker/setup-buildx-action@v1
       - name: Login to Registries
         run: |
-          echo "${GITHUB_TOKEN}" | docker login docker.pkg.github.com -u korosuke613 --password-stdin
+          echo "${GITHUB_TOKEN}" | docker login ghcr.io -u korosuke613 --password-stdin
           echo "${DOCKER_HUB_TOKEN}" | docker login -u korosuke613 --password-stdin
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -86,8 +86,8 @@ jobs:
             --build-arg SECRETLINT_VERSION=${SECRETLINT_VERSION} \
             --platform linux/amd64,linux/arm64 \
             --push \
-#            -t "${PKG_TAG}" \
-#            -t "${PKG_LATEST_TAG}" \
+            -t "${PKG_TAG}" \
+            -t "${PKG_LATEST_TAG}" \
             -t "${HUB_TAG}" \
             -t "${HUB_LATEST_TAG}"
         working-directory: ./publish/docker
