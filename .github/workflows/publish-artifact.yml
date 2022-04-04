@@ -61,10 +61,7 @@ jobs:
           echo "PKG_LATEST_TAG=${DOCKER_BASE_NAME}:latest" >> $GITHUB_ENV
           echo "HUB_TAG=${DOCKER_HUB_BASE_NAME}:${TAG_NAME}" >> $GITHUB_ENV
           echo "HUB_LATEST_TAG=${DOCKER_HUB_BASE_NAME}:latest" >> $GITHUB_ENV
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
       - name: Set up Docker Buildx
-        id: buildx
         uses: docker/setup-buildx-action@v1
       - name: Login to Registries
         run: |
@@ -73,11 +70,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
-      - name: Print version
+      - name: Build image
         run: |
           docker buildx build . \
+            --build-arg SECRETLINT_VERSION=${SECRETLINT_VERSION} \
             --load \
             -t "${PKG_TAG}"
+      - name: Print version
+        run: |
           docker run --rm ${PKG_TAG} --version
         working-directory: ./publish/docker
       - name: Build image
@@ -85,7 +85,6 @@ jobs:
           docker buildx build . \
             --build-arg SECRETLINT_VERSION=${SECRETLINT_VERSION} \
             --platform linux/amd64,linux/arm64 \
-            --push \
             -t "${PKG_TAG}" \
             -t "${PKG_LATEST_TAG}" \
             -t "${HUB_TAG}" \
