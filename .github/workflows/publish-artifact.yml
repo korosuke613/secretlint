@@ -3,6 +3,7 @@ name: Publish-Artifact
 on:
   repository_dispatch:
     types: [publish-artifact]
+  pull_request:
 env:
   CI: true
   DOCKER_BASE_NAME: docker.pkg.github.com/${{ github.repository }}/secretlint
@@ -67,8 +68,8 @@ jobs:
         uses: docker/setup-buildx-action@v1
       - name: Login to Registries
         run: |
-          echo "${GITHUB_TOKEN}" | docker login docker.pkg.github.com -u azu --password-stdin
-          echo "${DOCKER_HUB_TOKEN}" | docker login -u efcl --password-stdin
+          echo "${GITHUB_TOKEN}" | docker login docker.pkg.github.com -u korosuke613 --password-stdin
+          echo "${DOCKER_HUB_TOKEN}" | docker login -u korosuke613 --password-stdin
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
