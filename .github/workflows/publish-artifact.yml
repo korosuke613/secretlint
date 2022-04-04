@@ -88,6 +88,6 @@ jobs:
             --push \
             -t "${PKG_TAG}" \
             -t "${PKG_LATEST_TAG}" \
-            -t "${HUB_TAG}" \
-            -t "${HUB_LATEST_TAG}"
+#            -t "${HUB_TAG}" \
+#            -t "${HUB_LATEST_TAG}"
         working-directory: ./publish/docker
