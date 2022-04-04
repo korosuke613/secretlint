@@ -7,7 +7,7 @@ on:
 env:
   CI: true
   DOCKER_BASE_NAME: ghcr.io/${{ github.repository }}
-  DOCKER_HUB_BASE_NAME: secretlint/secretlint
+  DOCKER_HUB_BASE_NAME: korosuke613/secretlint
 
 permissions:
   contents: write
