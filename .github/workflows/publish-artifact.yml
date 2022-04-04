@@ -73,6 +73,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
+      - name: Print version
+        run: |
+          docker buildx build . \
+            --load \
+            -t "${PKG_TAG}"
+          docker run --rm ${PKG_TAG} --version
+        working-directory: ./publish/docker
       - name: Build image
         run: |
           docker buildx build . \
@@ -83,11 +90,4 @@ jobs:
             -t "${PKG_LATEST_TAG}" \
             -t "${HUB_TAG}" \
             -t "${HUB_LATEST_TAG}"
-        working-directory: ./publish/docker
-      - name: Print version
-        run: |
-          docker buildx build . \
-            --load \
-            -t "${PKG_TAG}"
-          docker run --rm ${PKG_TAG} --version
         working-directory: ./publish/docker
