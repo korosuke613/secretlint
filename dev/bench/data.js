@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1649073862286,
+  "lastUpdate": 1649074239589,
   "repoUrl": "https://github.com/korosuke613/secretlint",
   "entries": {
     "Secretlint benchmark": [
@@ -11094,6 +11094,44 @@ window.BENCHMARK_DATA = {
             "name": "run secretlint for js-primer",
             "value": 0.65,
             "range": "±2.71%",
+            "unit": "ops/sec",
+            "extra": "6 samples"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "korosuke613@users.noreply.github.com",
+            "name": "Futa HIRAKOBA",
+            "username": "korosuke613"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "29e7a28061d86826fa5868229e2d36c1da852466",
+          "message": "Merge pull request #4 from korosuke613/test-support-arm64-docker-image\n\n[TEST]: feat(docker): support arm64 for image",
+          "timestamp": "2022-04-04T21:07:19+09:00",
+          "tree_id": "3b1322f28d071d6c648bc170849fdc3692cd4a35",
+          "url": "https://github.com/korosuke613/secretlint/commit/29e7a28061d86826fa5868229e2d36c1da852466"
+        },
+        "date": 1649074238777,
+        "tool": "benchmarkjs",
+        "benches": [
+          {
+            "name": "run secretlint for textling.github.io",
+            "value": 1.93,
+            "range": "±0.72%",
+            "unit": "ops/sec",
+            "extra": "9 samples"
+          },
+          {
+            "name": "run secretlint for js-primer",
+            "value": 0.63,
+            "range": "±1.80%",
             "unit": "ops/sec",
             "extra": "6 samples"
           }
